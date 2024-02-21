@@ -1,0 +1,155 @@
+/* This will style the chat button */
+#toggle-chat {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text/icon */
+    border-radius: 50%; /* Circular button */
+    width: 60px; /* Width of the button */
+    height: 60px; /* Height of the button */
+    border: none; /* No border */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Shadow for 3D effect */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    display: flex; /* Use flexbox for centering contents */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    position: fixed; /* Fixed position */
+    bottom: 20px; /* 20px from the bottom */
+    right: 20px; /* 20px from the right */
+    z-index: 100; /* Make sure it's above other elements */
+    font-size: 24px; /* Size of the icon */
+}
+
+/* This will hide the chat container initially */
+#chat-container {
+    position: fixed;
+    bottom: 100px; /* Increased distance from the toggle button */
+    right: 20px;
+    width: 350px; /* Increased width */
+    height: 500px; /* Increased height */
+    display: none;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 15px; /* Rounded corners for the chat window */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Shadow for 3D effect */
+    overflow: hidden; /* Ensures the content fits within the rounded corners */
+    z-index: 99;
+}
+
+#chat-header {
+    background-color: #007bff; /* Blue background to match the button */
+    color: white; /* White text for the header */
+    padding: 10px;
+    text-align: center;
+    font-size: 18px; /* Larger font size for the header */
+}
+
+#chatbox {
+    flex-grow: 1;
+    overflow-y: auto; /* Scrollable chat history */
+    padding: 10px;
+}
+
+#input-area {
+    display: flex;
+    border-top: 1px solid #ccc; /* Separator from the chat history */
+}
+
+#userInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: none; /* Removing default input border */
+    border-radius: 0; /* Align with the chat container's style */
+    margin: 10px 0 10px 10px;
+    font-size: 16px; /* Slightly larger font size */
+}
+
+#send-button {
+    background-color: transparent; /* Makes the button background transparent */
+    color: #007bff; /* Set the icon color */
+    border: none; /* Removes the border */
+    padding: 0; /* Adjust padding as needed */
+    margin: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#send-button i {
+    width: 20px;
+    height: 20px;
+}
+
+/* You might want to adjust the hover effect as well */
+#send-button:hover {
+    background-color: transparent; /* Ensures the background remains transparent on hover */
+    color: #0056b3; /* Darkens the icon color a bit on hover */
+}
+
+
+/* Additional hover effects for buttons */
+#toggle-chat:hover, #send-button:hover {
+    filter: brightness(1.1);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Add custom scrollbar styles for chatbox */
+#chatbox::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chatbox::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#chatbox::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+#chatbox::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* This will show the chat container when it's active */
+#chat-container.show {
+    display: flex;
+}
+
+
+/* Message bubble styling */
+.message {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 18px;
+    margin: 5px;
+    max-width: 60%; /* Adjust the max-width as necessary */
+}
+
+/* User message styling */
+.message.user {
+    background-color: #007bff;
+    color: white;
+    margin-left: auto; /* Aligns the user message to the right */
+    margin-right: 20px; /* Adjusts margin to the right of the message */
+}
+
+/* Bot message styling */
+.message.bot {
+    background-color: #e9e9eb;
+    color: black;
+    margin-left: 20px; /* Adjusts margin to the left of the message */
+}
+
+/* Chatbox styling */
+#chatbox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns bot messages to the left */
+}
+
+/* Input area styling - to ensure it stays at the bottom */
+#input-area {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

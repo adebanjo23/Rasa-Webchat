@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat with Rasa</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/chat.js" defer></script>
+</head>
+<body>
+
+<div id="chat-widget">
+    <button id="toggle-chat">
+        <i class="fas fa-comments"></i>
+    </button>
+    <div id="chat-container" class="hidden">
+        <div id="chat-header">Chat with Us!</div>
+        <div id="chatbox"></div>
+        <div id="input-area">
+            <input type="text" id="userInput" placeholder="Type a message..." />
+            <button id="send-button">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
