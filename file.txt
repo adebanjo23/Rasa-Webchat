@@ -1,0 +1,134 @@
+let appConfig = {};
+let url = "http://192.168.20.95:32091/public/spider/hello";
+
+async function fetchConfig() {
+   // function to check configuration here
+}
+
+fetchConfig();
+
+
+
+import { processText } from './textProcessing.js';
+
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleChatButton = document.getElementById("toggle-chat");
+  const chatContainer = document.getElementById("chat-container");
+  const toggleIcon = toggleChatButton.querySelector("i");
+
+  toggleChatButton.addEventListener("click", function () {
+    chatContainer.classList.toggle("show");
+    // Check if the chat container is shown and toggle the icon
+    if (chatContainer.classList.contains("show")) {
+      toggleIcon.classList.remove("fa-comments");
+      toggleIcon.classList.add("fa-times");
+    } else {
+      toggleIcon.classList.remove("fa-times");
+      toggleIcon.classList.add("fa-comments");
+    }
+  });
+
+
+  document
+    .getElementById("userInput")
+    .addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        let userText = this.value;
+        if (userText) {
+          displayMessage(userText, "user");
+          if (appConfig.interface == "socketio") {
+            sendMessageToRasaSocket(userText);
+          } else if (appConfig.interface == "rest") {
+            sendMessageToRasaRest(userText);
+          } else {
+            displayMessage("Interface not set correctly", null, "system");
+          }
+          this.value = "";
+        }
+      }
+    });
+  document.getElementById("send-button").addEventListener("click", function () {
+    let userInputField = document.getElementById("userInput");
+    let userText = userInputField.value;
+    if (userText) {
+      displayMessage(userText, "user");
+      if (appConfig.interface == "socketio") {
+        sendMessageToRasaSocket(userText);
+      } else if (appConfig.interface == "rest") {
+        sendMessageToRasaRest(userText);
+      } else {
+        displayMessage("Interface not set correctly", null, "system");
+      }
+      userInputField.value = "";
+    }
+  });
+});
+
+function displayMessage(text, buttons, sender) {
+  const chatbox = document.getElementById("chatbox");
+
+  // Create message container
+  const msgDiv = document.createElement("div");
+  msgDiv.classList.add("message", sender);
+
+
+  // Process text to convert URLs and [b] tags
+  text = processText(text);
+
+  // Use innerHTML to render the modified text with HTML tags
+  msgDiv.innerHTML = text;
+  msgDiv.classList.add("user");
+
+  chatbox.appendChild(msgDiv); // Append the message div first
+
+  // Handle buttons if provided
+// Handle buttons if provided
+if (buttons && Array.isArray(buttons)) {
+  const buttonContainer = document.createElement("div");
+  // function here
+}
+
+
+  // Scroll to the bottom of the chatbox
+  chatbox.scrollTop = chatbox.scrollHeight;
+
+  return msgDiv;
+}
+
+
+
+function showTypingIndicator() {
+  const chatbox = document.getElementById("chatbox");
+  const typingIndicator = document.createElement("div");
+  typingIndicator.classList.add("typing-indicator");
+  typingIndicator.innerHTML = "<div></div><div></div><div></div>"; // Simple dots animation or your custom animation
+  typingIndicator.setAttribute("id", "typing-indicator");
+  chatbox.appendChild(typingIndicator);
+  chatbox.scrollTop = chatbox.scrollHeight; // Scroll to bottom to show the indicator
+}
+
+function removeTypingIndicator() {
+  const typingIndicator = document.getElementById("typing-indicator");
+  if (typingIndicator) {
+    typingIndicator.parentNode.removeChild(typingIndicator);
+  }
+}
+
+
+
+function displayUserMessage(text) {
+  displayMessage(text, null, 'user');
+}
+
+async function sendMessageToRasaRest(message) {
+ // function to send message to rasa rest
+}
+
+
+
+let loadingMessage = null;
+
+function sendMessageToRasaSocket(message) {
+  // function to send message here
+}
+
